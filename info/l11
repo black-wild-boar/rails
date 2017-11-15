@@ -1,0 +1,47 @@
+sudo apt install ruby-rails
+
+sudo gem install rails
+rails -v
+
+sqlite3 --version
+#create new rails application
+rails new <name_application>
+
+rails server
+
+http://localhost:3000
+
+#controller generation
+rails generate
+#or
+rails g
+
+rails g controller <controller_name> <methods>
+rails g controller welcome index
+#every controller called @action@ & every action associate view
+
+#add controller & view & config/routes.rb(get 'welcome/index')
+#тип запроса GET с путём <controller_name>/<methods>
+
+# add default page
+# add to config/routes.rb string
+# root 'welcome#index'
+
+#CRUD (круд) operations Create Read Update Delete
+
+#scaffolding - auto generate skelet with params
+
+rails g scaffold <source_name_in_singular> <params>:<type>
+rails g scaffold railway_station title:string
+
+# <%= <ruby_code> %>
+
+# to apply migrations (some changes with bd ...)
+rake db:migrate
+
+#show helpers
+rake routes
+
+#to run helper from view <helper_name>_path
+
+

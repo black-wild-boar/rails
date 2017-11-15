@@ -6,6 +6,7 @@ rails -v
 sqlite3 --version
 #create new rails application
 rails new <name_application>
+rails new tutu
 
 rails server
 
@@ -33,6 +34,12 @@ rails g controller welcome index
 
 rails g scaffold <source_name_in_singular> <params>:<type>
 rails g scaffold railway_station title:string
+
+#!!! if error spring/application.rb:152:in `serve': undefined method `cleanup!' for ActionDispatch::Reloader:Class (NoMethodError)
+spring stop
+rails g scaffold <source_name_in_singular> <params>:<type>
+
+
 
 # <%= <ruby_code> %>
 
