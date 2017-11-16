@@ -1,0 +1,73 @@
+#zlib is missing; necessary for building libxml2
+apt install zlib1g-dev
+#sqlite3.h is missing. Try 'brew install sqlite3',
+apt install libsqlite3-dev
+#/usr/lib/ruby/vendor_ruby/bundler/runtime.rb:34:in `block in setup': You have already activated spring 1.3.6, but your Gemfile requires spring 2.0.2. Prepending `bundle exec` to your command may solve this. (Gem::LoadError)
+bundle exec spring
+bundle exec spring stop
+
+
+#start rails console
+rails c
+
+#create migration (1)
+rails g migration CreateTrain
+# add to /db/migrate/1231231232_create_trains.rb
+---
+t.string :number
+t.timestamps
+---
+#create table in db
+rake db:migrate
+#rollback (remove table from db)
+rake db:rollback
+
+#create model (2)
+#create new file train.rb at "/models" dir and add class
+---
+class Train < ActiveRecord::Base
+end
+---
+rails c
+Trains.all
+Trains.create(number: 'qwe')
+
+#add to routes.rb (3)
+---
+resources :trains
+---
+rake routes
+
+http://localhost:3000/trains
+#create controller (4) at /controllers dir
+trains_controller.rb
+#add class
+---
+class TrainsController < ApplicationController
+def index
+@trains = Train.all
+end
+---
+
+#create view dir /views/trains
+#create file view /views/trains/index.html.irb
+#like after scaffold & change @trains etc.
+
+# add method code to file trains_controller.rb (5)
+---
+def show
+@trains = Train.find(params[:id])
+end
+---
+# add file view show.html.erb
+# add code from scaffold
+# add controller method "new" to file trains_controller.rb
+---
+def new
+@train = Train.new
+end
+---
+# add(render/отрендерить) view new.html.erb
+
+
+---
