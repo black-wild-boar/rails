@@ -35,6 +35,7 @@ Trains.create(number: 'qwe')
 #add to routes.rb (3)
 ---
 resources :trains
+root 'trains#index'
 ---
 rake routes
 
@@ -53,6 +54,7 @@ end
 #create file view /views/trains/index.html.irb
 #like after scaffold & change @trains etc.
 
+http://localhost:3000/trains/index
 # add method code to file trains_controller.rb (5)
 ---
 def show
@@ -71,3 +73,23 @@ end
 
 
 ---
+#add source Routes
+rails g migration CreateRoutes
+#add to .../db/migrate/xxxxxxx_create_routes.rb
+--
+t.string :name
+t.timestamps
+--
+rake db:migrate
+#add to .../config/routes.rb
+---
+resources :routes
+---
+rails routes
+#add to /app/controllers/routes_controller.rb
+#create new file route.rb at "/models" dir and add class
+---
+class Train < ActiveRecord::Base
+end
+---
+
